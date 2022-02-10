@@ -1,0 +1,32 @@
+const {By,Key,Builder} = require("selenium-webdriver");
+require("chromedriver");
+ 
+async function example(){
+
+       var gamepin = "1147295";
+       const nickslist = ("woot", "HI")
+       let nicks = nickslist[1]
+    
+       //To wait for browser to build and launch properly
+       let driver = await new Builder().forBrowser("chrome").build();
+ 
+        //To fetch http://google.com from the browser with our code.
+        await driver.get("https://kahoot.it/");
+        var t = "t"
+        //To send a search query by passing the value in searchString.
+        await driver.findElement(By.name("gameId")).sendKeys(gamepin,Key.RETURN);
+        setTimeout(() => {driver.findElement(By.id("nickname")).sendKeys(nicks,Key.RETURN)}, 4000);
+        
+        setTimeout(() => {driver.findElement(By.id("nickname")).sendKeys(Key.CONTROL,Key.SHIFT,t)}, 3000);
+
+
+        //Verify the page title and print it
+        //var title = await driver.getTitle();
+        //console.log('Title is:',title);
+ 
+        //It is always a safe practice to quit the browser after execution
+        //await driver.quit();
+ 
+}
+ 
+example()
